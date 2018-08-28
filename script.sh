@@ -28,33 +28,34 @@ apt-get install net-tools -y
 echo "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin" >> /home/${user}/.bashrc
 
 #download
-if [  -d $goName ]; then
+if [  -f $goName ]; then
 	echo "exists go"
 else
 	wget -O $goName $goUrl
 fi
 
-if [  -d $jdkName ]; then
+if [  -f $jdkName ]; then
 	echo "exists jdk"
 else
 	wget -O $jdkName "jdk.tar.gz" $jdkUrl
 fi
 
-if [  -d $golandName ]; then
+if [  -f $golandName ]; then
 	echo "exists goland"
 else
 	wget -O $golandName "goland.tar.gz" $golandUrl
 fi
 
-if [  -d $ideaName ]; then
+if [  -f $ideaName ]; then
 	echo "exists idea"
 else
 	wget -O $ideaName "idea.tar.gz" $ideaUrl
 fi
 
 
-if [ -d $sougouName ]; then
+if [ -f $sougouName ]; then
 	echo "exists sougou input"
+	dpkg -i $sougouName
 else
 	wget -O $sougouName "sougou.deb" $sougouUrl
 fi
@@ -84,16 +85,16 @@ apt-get install fcitx fcitx-tools fcitx-config* fcitx-frontend* fcitx-module* fc
 apt-get remove fcitx-module-kimpanel    # 移除多余的组件
 apt-get install fcitx-pinyin            # 拼音
 apt-get install fcitx-googlepinyin      # google拼音
-dpkg -i sogoupinyin_2.2.0.0108_amd64.deb
+
 
 #chome
 #wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #dpkg -i  google-chrome-stable_current_amd64.deb
-echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >| sudo tee /etc/apt/sources.list.d/chrome.list
-wget https://dl-ssl.google.com/linux/linux_signing_key.pub
-apt-key add linux_signing_key.pub
-apt-get update
-apt-get install google-chrome-stable
+#echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >| sudo tee /etc/apt/sources.list.d/chrome.list
+#wget https://dl-ssl.google.com/linux/linux_signing_key.pub
+#apt-key add linux_signing_key.pub
+#apt-get update
+#apt-get install google-chrome-stable
 
 #charles
 wget -q -O - https://www.charlesproxy.com/packages/apt/PublicKey | sudo apt-key add
@@ -120,6 +121,6 @@ apt-key fingerprint 0EBFCD88
 apt-get update -y
 apt-get install docker-ce -y
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker $user
 
 
