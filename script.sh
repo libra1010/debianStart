@@ -28,32 +28,32 @@ apt-get install net-tools -y
 echo "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin" >> /home/${user}/.bashrc
 
 #download
-if [ ! -d $goName ]; then
+if [  -d $goName ]; then
 	echo "exists go"
 else
 	wget -O $goName $goUrl
 fi
 
-if [ ! -d $jdkName ]; then
+if [  -d $jdkName ]; then
 	echo "exists jdk"
 else
 	wget -O $jdkName "jdk.tar.gz" $jdkUrl
 fi
 
-if [ ! -d $golandName ]; then
+if [  -d $golandName ]; then
 	echo "exists goland"
 else
 	wget -O $golandName "goland.tar.gz" $golandUrl
 fi
 
-if [ ! -d $ideaName ]; then
+if [  -d $ideaName ]; then
 	echo "exists idea"
 else
 	wget -O $ideaName "idea.tar.gz" $ideaUrl
 fi
 
 
-if [ ! -d $sougouName ]; then
+if [ -d $sougouName ]; then
 	echo "exists sougou input"
 else
 	wget -O $sougouName "sougou.deb" $sougouUrl
